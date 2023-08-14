@@ -1,14 +1,18 @@
 // получаем информацию об астеройдах
-export const getAllAsteroids = async () => {
+export const getAllAsteroids = async (newDate: string) => {
     // получаем текущую дату
     const today: Date = new Date();
     const getYear: string = today.toLocaleDateString('default', { year: 'numeric' });
     const getMonth: string = today.toLocaleDateString('default', { month: '2-digit' });
     const getDay: string = today.toLocaleDateString('default', { day: '2-digit' });
     const currentDate: string = getYear + '-' + getMonth + '-' + getDay;
+
+    // определяем конечную дату
+    let finalDate: string;
+    newDate ? finalDate = newDate : finalDate = currentDate;
     
     // формируем url запроса
-    const url: string = 'https://api.nasa.gov/neo/rest/v1/feed?start_date=' + currentDate + '&end_date=2023-08-20&api_key=kczEXhrExmLkRFpCO9se3DEuMv2fwQLjblrXV1fT';
+    const url: string = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${currentDate}&end_date=${finalDate}&api_key=kczEXhrExmLkRFpCO9se3DEuMv2fwQLjblrXV1fT`;
 
     // делаем запрос
     const res: Response = await fetch(url, {

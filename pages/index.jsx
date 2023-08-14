@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { getAllAsteroids } from '../Service/NASAapi';
+import Logo from '../components/Logo/Logo';
+import AsteroidsCards from '../components/AsteroidsCards/AsteroidsCards';
 
 export async function getStaticProps() {
     const asteroids = await getAllAsteroids();
-    console.log('testAsteroids', asteroids);
 
     return {
         props: {
@@ -11,10 +13,15 @@ export async function getStaticProps() {
     }
 }
 
-export default function index({ asteroids }) {
+export default function index( { asteroids } ) {
+    const [limit, setLimit] = useState(4);
+
     return (
         <div>
-            <h1>Hello</h1>
+            <Logo />
+            <AsteroidsCards 
+                asteroids={asteroids}
+            />
         </div>
     )
 }
