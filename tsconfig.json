@@ -23,6 +23,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/AsteroidsCards/AsteroidsCards.jsx", "pages/index.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/AsteroidsCards/AsteroidsCards.jsx", "pages/index.jsx", "components/Basket/Basket.jsx"],
   "exclude": ["node_modules"]
 }
