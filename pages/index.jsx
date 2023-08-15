@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { getAllAsteroids } from '../Service/NASAapi';
 import Logo from '../components/Logo/Logo';
 import AsteroidsCards from '../components/AsteroidsCards/AsteroidsCards';
-import Basket from '../components/Basket/Basket';
+import Order from '../components/Order/Order';
 
 export async function getStaticProps() {
     const asteroids = await getAllAsteroids();
@@ -21,7 +21,9 @@ export default function index( { asteroids } ) {
     return (
         <div>
             <Logo />
-            <Basket />
+            <Order 
+                order={order}
+            />
             <AsteroidsCards 
                 asteroids={asteroids}
                 order={order}
