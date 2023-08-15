@@ -2,7 +2,11 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { getAllAsteroids } from '../../Service/NASAapi';
 
-const CardLayout = ( { card } ) => {
+const CardLayout = ( { card, order, setOrder } ) => {
+    const handleMakeOrder = (item) => {
+        setOrder([...order, item]);
+    }
+    
     return (
         <div>
             <Link 
@@ -16,13 +20,13 @@ const CardLayout = ( { card } ) => {
             <p>{card.closeDistanceKilo}</p>
             <p>{card.name}</p>
             <p>{card.size}</p>
-            <button>Заказать</button>
+            <button onClick={() => handleMakeOrder(card)}>Заказать</button>
             <p>Опасен</p>
         </div>
     )
 }
  
-const AsteroidsCards = ( {asteroids} ) => {
+const AsteroidsCards = ( { asteroids, order, setOrder } ) => {
     const today = new Date();
     const [count, setCount] = useState(0);
     today.setDate(today.getDate() + count);
@@ -135,6 +139,8 @@ const AsteroidsCards = ( {asteroids} ) => {
                         <li key={item.id}>
                             <CardLayout 
                                 card={item}
+                                order={order}
+                                setOrder={setOrder}                                
                             />
                         </li>
                     )

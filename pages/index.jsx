@@ -15,7 +15,8 @@ export async function getStaticProps() {
 }
 
 export default function index( { asteroids } ) {
-    const [limit, setLimit] = useState(4);
+    const [order, setOrder] = useState([]);
+    console.log('Заказ', order);
 
     return (
         <div>
@@ -23,6 +24,8 @@ export default function index( { asteroids } ) {
             <Basket />
             <AsteroidsCards 
                 asteroids={asteroids}
+                order={order}
+                setOrder={setOrder}
             />
         </div>
     )
