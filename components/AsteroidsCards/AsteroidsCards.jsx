@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { getAllAsteroids } from '../../Service/NASAapi';
+import { formData } from '../../Service/formData';
 
 const CardLayout = ( { card, order, setOrder } ) => {
     const handleMakeOrder = (item) => {
@@ -43,22 +44,7 @@ const AsteroidsCards = ( { asteroids, order, setOrder } ) => {
 
     // формируем стартовый набор астероидов
     function handleCreateCards(asteroids) {
-        const data = asteroids[`${finalDate}`].map((item) => {
-            let asteroid = {
-                id: item.id,
-                date: finalDate,
-                name: item.name,
-                size: item.estimated_diameter.meters.estimated_diameter_max,
-                dangerRate: item.is_potentially_hazardous_asteroid,
-                closeDistanceLunar: item.close_approach_data[0].miss_distance.lunar,
-                closeDistanceKilo: item.close_approach_data[0].miss_distance.kilometers,
-                closeDistanceDate: item.close_approach_data[0].close_approach_date_full,
-                orbitingBody: item.close_approach_data[0].orbiting_body,
-                closeApproachData: item.close_approach_data[0].relative_velocity.kilometers_per_hour 
-            }
-
-            return asteroid;
-        });
+        const data = formData(asteroids[`${finalDate}`]);
 
         setCurrentDate(finalDate);
         setCards(data);
@@ -74,23 +60,7 @@ const AsteroidsCards = ( { asteroids, order, setOrder } ) => {
             return;
         }
 
-        const newData = data.map((item) => {
-            let asteroid = {
-                id: item.id,
-                date: newDate,
-                name: item.name,
-                size: item.estimated_diameter.meters.estimated_diameter_max,
-                dangerRate: item.is_potentially_hazardous_asteroid,
-                closeDistanceLunar: item.close_approach_data[0].miss_distance.lunar,
-                closeDistanceKilo: item.close_approach_data[0].miss_distance.kilometers,
-                closeDistanceDate: item.close_approach_data[0].close_approach_date,
-                closeDistanceDate: item.close_approach_data[0].close_approach_date_full,
-                orbitingBody: item.close_approach_data[0].orbiting_body,
-                closeApproachData: item.close_approach_data[0].relative_velocity.kilometers_per_hour
-            }
-
-            return asteroid;
-        });
+        const newData = formData(data);
 
         setCards([...cards, ...newData]);
     }

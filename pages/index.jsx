@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, setItem } from 'react';
 import { getAllAsteroids } from '../Service/NASAapi';
 import Logo from '../components/Logo/Logo';
 import AsteroidsCards from '../components/AsteroidsCards/AsteroidsCards';
@@ -17,7 +17,7 @@ export async function getStaticProps() {
 export default function index( { asteroids } ) {
     const [order, setOrder] = useState([]);
     console.log('Заказ', order);
-
+    
     return (
         <div>
             <Logo />
