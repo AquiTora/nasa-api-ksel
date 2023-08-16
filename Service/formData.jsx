@@ -1,7 +1,9 @@
-export const formData = (asteroids) => {
+// функция для формирования объектов с данными об астероидах
+export const formData = (asteroids, requestDate) => {
     const newData = asteroids.map((item) => {
         let asteroid = {
             id: item.id,
+            date: requestDate,
             name: item.name,
             size: item.estimated_diameter.meters.estimated_diameter_max,
             dangerRate: item.is_potentially_hazardous_asteroid,

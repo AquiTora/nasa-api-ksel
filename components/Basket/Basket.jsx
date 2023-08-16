@@ -13,24 +13,33 @@ const OrderLayout = ( { order } ) => {
 
 const Basket = ( { order } ) => {
     const [orderData, setOrderData] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleRequestOrder = async () => {
+        setIsLoading(true);
         const array = [];
 
         if (Array.isArray(order.date)) {
             for (let f = 0; f < order.date.length; f++) {
-                const response = await getAllAsteroids(order.date[f], order.date[f]);
-                const data = response.near_earth_objects[`${order.date[f]}`];
-                const result = data.filter((element) => element.id == order.id[f]);
-
-                array.push(...result);
+                try {
+                    const response = await getAllAsteroids(order.date[f], order.date[f]);
+                    const data = response.near_earth_objects[`${order.date[f]}`];
+                    const result = data.filter((element) => element.id == order.id[f]);
+                    array.push(...result);
+                } finally {
+                    setIsLoading(false);
+                }                
             }
         } else {
-            const response = await getAllAsteroids(order.date, order.date);
-            const data = response.near_earth_objects[`${order.date}`];
-            const result = data.filter((element) => element.id == order.id);
+            try {
+                const response = await getAllAsteroids(order.date, order.date);
+                const data = response.near_earth_objects[`${order.date}`];
+                const result = data.filter((element) => element.id == order.id);
 
-            array.push(...result);
+                array.push(...result);
+            } finally {
+                setIsLoading(false);
+            }
         }
                 
         const newData = formData(array);
@@ -44,7 +53,8 @@ const Basket = ( { order } ) => {
 
     return (
         <div>
-            <h1>Заказ отправлен!</h1>
+            {isLoading && <h1>Загружаем заказ...</h1>}
+            {!isLoading && <h1>Заказ отправлен!</h1>}
             <ul>
                 {orderData.map((item) => {
                     return (

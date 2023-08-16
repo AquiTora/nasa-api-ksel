@@ -1,4 +1,4 @@
-import { useState, setItem } from 'react';
+import { useState } from 'react';
 import { getAllAsteroids } from '../Service/NASAapi';
 import Logo from '../components/Logo/Logo';
 import AsteroidsCards from '../components/AsteroidsCards/AsteroidsCards';

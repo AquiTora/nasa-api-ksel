@@ -44,7 +44,7 @@ const AsteroidsCards = ( { asteroids, order, setOrder } ) => {
 
     // формируем стартовый набор астероидов
     function handleCreateCards(asteroids) {
-        const data = formData(asteroids[`${finalDate}`]);
+        const data = formData(asteroids[`${finalDate}`], finalDate);
 
         setCurrentDate(finalDate);
         setCards(data);
@@ -60,7 +60,7 @@ const AsteroidsCards = ( { asteroids, order, setOrder } ) => {
             return;
         }
 
-        const newData = formData(data);
+        const newData = formData(data, newDate);
 
         setCards([...cards, ...newData]);
     }
