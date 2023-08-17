@@ -30,6 +30,7 @@
     cursor: pointer;
     font-weight: 400;
     border-bottom: solid white 1px;
+    pointer-events: none;
 }
 
 .list {
@@ -52,6 +53,10 @@
 
 .distance {
     margin-right: 10px;
+}
+
+.lunarDistance {
+    margin-right: 11px;
 }
 
 .sizeImg {
@@ -97,4 +102,25 @@
     font-weight: 700;
     size: 11px;
     letter-spacing: 1px;
+}
+
+.orderBtnBlock {
+    background-color: rgba(248, 102, 0, 0.15);
+    color: #F5DED9;
+    pointer-events: none;
+    cursor: pointer;
+    border: none;
+    margin-top: 15px;
+    width: 100px;
+    height: 24px;
+    border-radius: 16px;
+    gap: 2px;
+
+    font-weight: 700;
+    size: 11px;
+    letter-spacing: 1px;
+}
+
+.status {
+    margin-top: 18px;
 }

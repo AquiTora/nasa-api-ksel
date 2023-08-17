@@ -35,14 +35,14 @@ const CardLayout = ( { card, order, setOrder, kiloDistance } ) => {
                             {kilo.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} км
                         </p>
                         ||
-                        <p>
+                        <p className={styles.lunarDistance}>
                             {lunar.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} лунных орбит
                         </p>
                     } 
                     <img 
                         className={styles.arrow}
                         src='/svg/arrow.svg'
-                        width={100}
+                        width={kiloDistance && 100 || 130}
                     />
                 </div>
                 
@@ -64,12 +64,12 @@ const CardLayout = ( { card, order, setOrder, kiloDistance } ) => {
 
             <div className={styles.orderBtnDiv}>
                 <button 
-                    className={styles.orderBtn}
+                    className={inBasket ? styles.orderBtnBlock : styles.orderBtn}
                     onClick={() => handleMakeOrder(card)}
                 >
-                    ЗАКАЗАТЬ
+                    {inBasket && <>В КОРЗИНЕ</> || <>ЗАКАЗАТЬ</>}
                 </button>
-                {card.dangerRate && <p >⚠ Опасен</p> || <p>Безопасен</p>}
+                {card.dangerRate && <p >⚠ Опасен</p> || <p className={styles.status}>Безопасен</p>}
             </div>            
             
         </div>
@@ -164,14 +164,14 @@ const AsteroidsCards = ( { asteroids, order, setOrder } ) => {
             <h1 className={styles.title}>Ближайшие подлёты астероидов</h1>
             <div className={styles.switch}>
                 <button 
-                    className={styles.switchBtn}
+                    className={kiloDistance ? styles.switchBtn_active : styles.switchBtn}
                     onClick={handleChangeDistanceView}
                 >
                     в километрах
                 </button>
                 |
                 <button 
-                    className={styles.switchBtn_active}
+                    className={!kiloDistance ? styles.switchBtn_active : styles.switchBtn}
                     onClick={handleChangeDistanceView}
                 >
                     в лунных орбитах
