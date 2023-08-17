@@ -1,0 +1,100 @@
+.asteroidsCards {
+    font-family: 'Helvetica';
+    color: white;
+    width: 402px;
+    padding-top: 132px;
+    margin-left: 35%;
+}
+
+.title {
+    size: 28px;
+    line-height: 36px;
+}
+
+.switch {
+    display: flex;
+}
+
+.switchBtn {
+    border: none;
+    color: white;
+    background-color: transparent;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.switchBtn_active {
+    border: none;
+    color: white;
+    background-color: transparent;
+    cursor: pointer;
+    font-weight: 400;
+    border-bottom: solid white 1px;
+}
+
+.list {
+    padding: 0px;
+    list-style-type: none;
+}
+
+.cardLink {
+    text-decoration: none;
+}
+
+.cardTitle {
+    color: white;
+    cursor: pointer;
+}
+
+.infoDiv {
+    display: flex;
+}
+
+.distance {
+    margin-right: 10px;
+}
+
+.sizeImg {
+    margin-top: 15px;
+    margin-right: 10px;
+}
+
+.name {
+    font-weight: 700;
+    border-bottom: solid white 1px;
+}
+
+.orderBtnDiv {
+    display: flex;
+    width: 197px;
+    gap: 10px
+}
+
+.orderBtn {
+    background-color: rgba(248, 102, 0, 0.15);
+    color: #F86600;
+    cursor: pointer;
+    border: none;
+    margin-top: 15px;
+    width: 90px;
+    height: 24px;
+    border-radius: 16px;
+    gap: 2px;
+
+    font-weight: 700;
+    size: 11px;
+    letter-spacing: 1px;
+}
+
+.orderBtn:hover {
+    background-color: #F86600;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 16px;
+    gap: 2px;
+
+    font-weight: 700;
+    size: 11px;
+    letter-spacing: 1px;
+}

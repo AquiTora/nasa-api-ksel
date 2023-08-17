@@ -1,33 +1,83 @@
 import Link from "next/link";
+import Image from "next/image";
+import styles from './AsteroidsCards.module.css';
 import { useState, useEffect } from "react";
 import { getAllAsteroids } from '../../Service/NASAapi';
 import { formData } from '../../Service/formData';
 
-const CardLayout = ( { card, order, setOrder } ) => {
+const CardLayout = ( { card, order, setOrder, kiloDistance } ) => {
+    const [inBasket, setInBasket] = useState(false);
+    const kilo = Math.ceil(card.closeDistanceKilo);
+    const lunar = Math.ceil(card.closeDistanceLunar);
+    const size = Math.ceil(card.size);
+
     const handleMakeOrder = (item) => {
+        setInBasket(true);
         setOrder([...order, item]);
     }
     
     return (
         <div>
             <Link 
+                className={styles.cardLink}
                 href={{
                     pathname: `/${card.name}`,
                     query: card
                 }}
             >
-                <h1>{card.closeDistanceDate}</h1>
+                <h1 className={styles.cardTitle}>{card.closeDistanceDate}</h1>
             </Link>
-            <p>{card.closeDistanceKilo}</p>
-            <p>{card.name}</p>
-            <p>{card.size}</p>
-            <button onClick={() => handleMakeOrder(card)}>Заказать</button>
-            <p>Опасен</p>
+            <div className={styles.infoDiv}>
+                <div>
+                    {
+                        kiloDistance && 
+                        <p className={styles.distance}>
+                            {kilo.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} км
+                        </p>
+                        ||
+                        <p>
+                            {lunar.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} лунных орбит
+                        </p>
+                    } 
+                    <img 
+                        className={styles.arrow}
+                        src='/svg/arrow.svg'
+                        width={100}
+                    />
+                </div>
+                
+
+                <Image 
+                    className={styles.sizeImg}
+                    src={
+                        size > 500 && '/svg/astBig.svg' || '/svg/astSmall.svg'
+                    }
+                    width={size > 500 && 36 || 22}
+                    height={size > 500 && 40 || 24}
+                />
+
+                <div>
+                    <p className={styles.name}>{card.name}</p>
+                    <p>Ø {size.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} м</p>
+                </div>
+            </div>
+
+            <div className={styles.orderBtnDiv}>
+                <button 
+                    className={styles.orderBtn}
+                    onClick={() => handleMakeOrder(card)}
+                >
+                    ЗАКАЗАТЬ
+                </button>
+                {card.dangerRate && <p >⚠ Опасен</p> || <p>Безопасен</p>}
+            </div>            
+            
         </div>
     )
 }
  
 const AsteroidsCards = ( { asteroids, order, setOrder } ) => {
+    
     const today = new Date();
     const [count, setCount] = useState(0);
     today.setDate(today.getDate() + count);
@@ -38,9 +88,12 @@ const AsteroidsCards = ( { asteroids, order, setOrder } ) => {
     const [finalDate, setFinalDate] = useState(`${year}-${month}-${day}`);
 
     const [cards, setCards] = useState([]);
+    console.log('asteroids', cards);
 
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+
+    const [kiloDistance, setKiloDistance] = useState(true);
 
     // формируем стартовый набор астероидов
     function handleCreateCards(asteroids) {
@@ -101,24 +154,49 @@ const AsteroidsCards = ( { asteroids, order, setOrder } ) => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, [isLoading]);
 
+    // меняем режим отображения дистанции
+    const handleChangeDistanceView = () => {
+        kiloDistance ? setKiloDistance(false) : setKiloDistance(true);
+    }
+
     return (
-        <div>
-            <ul>
-                {cards.map((item) => {
-                    return (
-                        <li key={item.id}>
-                            <CardLayout 
-                                card={item}
-                                order={order}
-                                setOrder={setOrder}                                
-                            />
-                        </li>
-                    )
-                })}
-            </ul>
+        <div className={styles.asteroidsCards}>
+            <h1 className={styles.title}>Ближайшие подлёты астероидов</h1>
+            <div className={styles.switch}>
+                <button 
+                    className={styles.switchBtn}
+                    onClick={handleChangeDistanceView}
+                >
+                    в километрах
+                </button>
+                |
+                <button 
+                    className={styles.switchBtn_active}
+                    onClick={handleChangeDistanceView}
+                >
+                    в лунных орбитах
+                </button>
+            </div>
+            <div>
+                <ul className={styles.list}>
+                    {cards.map((item) => {
+                        return (
+                            <li key={item.id}>
+                                <CardLayout 
+                                    card={item}
+                                    order={order}
+                                    setOrder={setOrder}    
+                                    kiloDistance={kiloDistance}                            
+                                />
+                            </li>
+                        )
+                    })}
+                </ul>
+            </div>
+            
             {isLoading && <p>Loading...</p>}
             {error && <p>Error: {error.message}</p>}
-            {/* Нужно будет обозначить конец 7 дней */}
+            {/* Нужно будет обозначить конец 7 дней */}            
         </div>
     )
 }

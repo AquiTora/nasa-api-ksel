@@ -1,0 +1,9 @@
+html, 
+body {
+    background-color: black;
+    background-image: url('../public/svg/planeta.svg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 377px 436px;
+    background-position: 0px 138px;
+}

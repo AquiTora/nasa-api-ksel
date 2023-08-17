@@ -1,4 +1,5 @@
 import Link from "next/link";
+import styles from './Order.module.css';
 
 const Order = ( { order } ) => {
     const id = order.map((item) => {
@@ -14,16 +15,17 @@ const Order = ( { order } ) => {
     console.log(sendData);
 
     return (
-        <div>
-            <h3>Корзина</h3>
-            <p>астероида {order.length}</p>
+        <div className={styles.order}>
+            <h3 className={styles.title}>Корзина</h3>
+            <p className={styles.text}>{order.length} астероида </p>
             <Link 
+                className={styles.link}
                 href={{
                     pathname: '/basket',
                     query: sendData
                 }}
             >
-                Отправить
+                <button className={styles.linkButtn}>Отправить</button> 
             </Link>
         </div>
     )
