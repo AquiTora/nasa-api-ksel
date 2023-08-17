@@ -1,8 +1,17 @@
 .logo {
+    background-color: black;
     position: fixed;
-    width: 375px;
+    width: auto;
     height: 123px;
+    padding-top: 10px;
+    padding-left: 10px;
+    top: 0px;
+    left: 0px;
     gap: 8px;
+
+    @media (max-width: 992px) {
+        width: 100%;
+    }
 }
 
 .title {

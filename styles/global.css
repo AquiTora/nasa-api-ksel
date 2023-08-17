@@ -6,4 +6,8 @@ body {
     background-attachment: fixed;
     background-size: 377px 436px;
     background-position: 0px 138px;
+
+    @media (max-width: 960px) {
+        background-position: -250px 138px;
+    }
 }

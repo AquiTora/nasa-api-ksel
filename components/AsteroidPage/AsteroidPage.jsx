@@ -1,7 +1,6 @@
 import styles from './AsteroidPage.module.css';
 
 const AsteroidPage = ({ asteroid }) => {
-    console.log('asteroid', asteroid);
     return (
         <div className={styles.asteroidPage}>
             <h1>{asteroid.name}</h1>

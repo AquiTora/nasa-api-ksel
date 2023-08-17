@@ -16,8 +16,6 @@ export async function getStaticProps() {
 
 export default function index( { asteroids } ) {
     const [order, setOrder] = useState([]);
-    console.log('Заказ', order);
-    console.log('asteroids', asteroids);
     
     return (
         <div>

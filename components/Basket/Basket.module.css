@@ -1,0 +1,45 @@
+.basket {
+    font-family: 'Helvetica';
+    color: white;
+    width: 400px;
+    padding-top: 132px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (max-width: 420px) {
+        width: auto;
+    }
+}
+
+.list {
+    padding: 0px;
+    list-style-type: none;
+}
+
+.infoDiv {
+    display: flex;
+    /* justify-content: center; */
+    height: 70px;
+}
+
+.distance {
+    margin-right: 10px;
+}
+
+.sizeImg {
+    margin-top: 15px;
+    margin-right: 10px;
+}
+
+.name {
+    font-weight: 700;
+    border-bottom: solid white 1px;
+}
+
+.status {
+    text-align: left;
+    /* margin-left: 60px; */
+    /* justify-content: center; */
+    /* float: left; */
+
+}

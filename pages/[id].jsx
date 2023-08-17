@@ -1,4 +1,3 @@
-import { getAllAsteroidsId, getAsteroidData } from '../Service/NASAapi';
 import { useRouter } from 'next/router';
 import Logo from '../components/Logo/Logo';
 import AsteroidPage from '../components/AsteroidPage/AsteroidPage';

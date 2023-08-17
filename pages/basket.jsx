@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import Logo from '../components/Logo/Logo';
 import Basket from '../components/Basket/Basket';
 
 export default function basket() {
@@ -7,6 +8,7 @@ export default function basket() {
 
     return (
         <div>
+            <Logo />
             <Basket 
                 order={data}
             />

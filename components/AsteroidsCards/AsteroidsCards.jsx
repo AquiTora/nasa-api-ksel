@@ -77,7 +77,6 @@ const CardLayout = ( { card, order, setOrder, kiloDistance } ) => {
 }
  
 const AsteroidsCards = ( { asteroids, order, setOrder } ) => {
-    
     const today = new Date();
     const [count, setCount] = useState(0);
     today.setDate(today.getDate() + count);
@@ -88,7 +87,6 @@ const AsteroidsCards = ( { asteroids, order, setOrder } ) => {
     const [finalDate, setFinalDate] = useState(`${year}-${month}-${day}`);
 
     const [cards, setCards] = useState([]);
-    console.log('asteroids', cards);
 
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -194,9 +192,7 @@ const AsteroidsCards = ( { asteroids, order, setOrder } ) => {
                 </ul>
             </div>
             
-            {isLoading && <p>Loading...</p>}
-            {error && <p>Error: {error.message}</p>}
-            {/* Нужно будет обозначить конец 7 дней */}            
+            {isLoading && <p>Loading...</p>}           
         </div>
     )
 }

@@ -12,7 +12,6 @@ const Order = ( { order } ) => {
         id: id,
         date: date
     }
-    console.log(sendData);
 
     return (
         <div className={styles.order}>
