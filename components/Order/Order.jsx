@@ -15,8 +15,11 @@ const Order = ( { order } ) => {
 
     return (
         <div className={styles.order}>
-            <h3 className={styles.title}>Корзина</h3>
-            <p className={styles.text}>{order.length} астероидов</p>
+            <div className={styles.orderInfoDiv}>
+                <h3 className={styles.title}>Корзина</h3>
+                <p className={styles.text}>{order.length} астероидов</p>
+            </div>
+            
             <Link 
                 className={styles.link}
                 href={{

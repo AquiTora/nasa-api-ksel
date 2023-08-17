@@ -5,3 +5,17 @@
     text-align: center;
     padding-top: 160px;
 }
+
+.link {
+    margin: 15px;
+}
+
+.linkButtn {
+    background-color: #F86600;
+    border: none;
+    color: white;
+    width: 118px;
+    height: 48px;
+    border-radius: 40px;
+    padding: 8px 16px 8px 16px;
+}

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getAllAsteroids } from '../../Service/NASAapi';
 import { formData } from '../../Service/formData';
@@ -93,6 +94,16 @@ const Basket = ( { order } ) => {
                 })}
 
             </ul>
+                
+            <div className={styles.linkDiv}>
+                <Link 
+                    href='/'
+                >
+                    <button className={styles.linkBtn}>
+                        На главную
+                    </button>
+                </Link>
+            </div>
         </div>
     )
 }
